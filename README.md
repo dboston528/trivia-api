@@ -42,3 +42,12 @@ The `./frontend` directory contains a complete React frontend to consume the dat
 Pay special attention to what data the frontend is expecting from each API response to help guide how you format your API. 
 
 [View the README.md within ./frontend for more details.](./frontend/README.md)
+
+### Virtual Environment
+
+In this project I'm using a virtual environemnt around the entire project. This means I install and activate the environment the at the root level. So before you spin up your backend or frontend please run the following commands. Also, let me know if this makes sense. I know there are multiple ways of doing things, so I'd like  to hear from you. 
+
+```
+python -m virtualenv env
+source env/bin/activate
+```
