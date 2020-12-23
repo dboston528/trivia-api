@@ -54,6 +54,22 @@ def create_app(test_config=None):
   ten questions per page and pagination at the bottom of the screen for three pages.
   Clicking on the page numbers should update the questions. 
   '''
+  @app.route('/questions')
+  def get_questions():
+    page = request.args.get('page', 1, type=int)
+    start = (page - 1) * QUESTIONS_PER_PAGE
+    end = start + QUESTIONS_PER_PAGE
+    question_list = Question.query.all()
+    category_list = Category.query.all()
+    formatted_questions = [question.format() for question in question_list]
+    category_types = [category.type for category in category_list]
+    print(category_types)
+    return jsonify({
+      'success': True,
+      'questions': formatted_questions[start:end],
+      'total_questions': len(formatted_questions),
+      'categories': category_types
+    })
 
   '''
   @TODO: 
