@@ -37,7 +37,6 @@ def create_app(test_config=None):
   def get_categories():
     thecategories = Category.query.all()
     formatted_categories =  [category.format() for category in thecategories]
-    print(formatted_categories)
     return jsonify({
       'success:': True,
       'categories': formatted_categories
