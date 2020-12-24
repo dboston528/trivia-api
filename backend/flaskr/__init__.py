@@ -63,7 +63,6 @@ def create_app(test_config=None):
     category_list = Category.query.all()
     formatted_questions = [question.format() for question in question_list]
     category_types = [category.type for category in category_list]
-    print(category_types)
     return jsonify({
       'success': True,
       'questions': formatted_questions[start:end],
@@ -78,6 +77,13 @@ def create_app(test_config=None):
   TEST: When you click the trash icon next to a question, the question will be removed.
   This removal will persist in the database and when you refresh the page. 
   '''
+  @app.route('/questions/<question_id>', methods=['DELETE'])
+  def delete_question(question_id):
+    deleted = Question.query.get(question_id)
+    deleted.delete()
+    return jsonify({
+      'success':True
+    })
 
   '''
   @TODO: 
