@@ -64,7 +64,6 @@ def create_app(test_config=None):
     formatted_questions = [question.format() for question in question_list]
     
     category_types = [category.type for category in category_list]
-    print(category_types)
     return jsonify({
       'success': True,
       'questions': formatted_questions[start:end],
@@ -120,6 +119,22 @@ def create_app(test_config=None):
   only question that include that string within their question. 
   Try using the word "title" to start. 
   '''
+  @app.route('/questions/search', methods=['POST'])
+  def search_question():
+    page = request.args.get('page', 1, type=int)
+    start = (page - 1 ) * QUESTIONS_PER_PAGE
+    end = start + QUESTIONS_PER_PAGE
+    search_term = request.json.get('searchTerm')
+    question_search_list = Question.query.filter(Question.question.ilike(f'%{search_term}%')).all()
+    formatted_search = [question.format() for question in question_search_list]
+    category_list = Category.query.all()
+    category_types = [category.type for category in category_list]
+    return jsonify({
+      'success':True,
+      'questions': formatted_search[start:end],
+      'total_questions': len(formatted_search),
+      'categories': category_types
+    })
 
   '''
   @TODO: 
