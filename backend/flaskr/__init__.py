@@ -36,7 +36,7 @@ def create_app(test_config=None):
   @app.route('/categories')
   def get_categories():
     thecategories = Category.query.all()
-    categoryTypes = [category.type for category in thecategories]
+    categoryTypes = {category.id: category.type for category in thecategories}
     return jsonify({
       'success:': True,
       'categories': categoryTypes
@@ -150,7 +150,6 @@ def create_app(test_config=None):
     end = start + QUESTIONS_PER_PAGE
     question_search_list = Question.query.filter(Question.category == category_id).all()
     formatted_search = [question.format() for question in question_search_list]
-    print(formatted_search)
     category_list = Category.query.all()
     category_types = [category.type for category in category_list]
     return jsonify({
@@ -172,7 +171,21 @@ def create_app(test_config=None):
   one question at a time is displayed, the user is allowed to answer
   and shown whether they were correct or not. 
   '''
-
+  @app.route('/quizzes', methods=['POST'])
+  def play_quiz():
+    previous_questions = request.json.get('previous_questions')
+    quiz_category = request.json.get('quiz_category')
+    if quiz_category['type'] == 'click':
+      questions = Question.query.all()
+      formatted_search = [question.format() for question in questions]
+    else:
+      questions = Question.query.filter(Question.category == quiz_category['id']).filter(Question.id.notin_(previous_questions)).all()
+      formatted_search = [question.format() for question in questions]
+    random_question = random.choice(formatted_search) if questions else None
+    return jsonify({
+      'success': True,
+      'question': random_question
+    })
   '''
   @TODO: 
   Create error handlers for all expected errors 
