@@ -140,9 +140,19 @@ POST /questions/search
 ```
 GET /categories/<<int:category_id>>/questions
 ```
+{
+    "success":true,
+    "questions: [{'id': 13, 'question': 'What is the largest lake in Africa?', 'answer': 'Lake Victoria', 'category': 3, 'difficulty': 2}, {'id': 14, 'question': 'In which royal palace would you find the Hall of Mirrors?', 'answer': 'The Palace of Versailles', 'category': 3, 'difficulty': 3}, {'id': 15, 'question': 'The Taj Mahal is located in which Indian city?', 'answer': 'Agra', 'category': 3, 'difficulty': 2}],
+    total_questions: 3,
+    "categories": ['Science', 'Art', 'Geography', 'History', 'Entertainment', 'Sports']
+}
 ```
 POST /quizzes
 ```
+{
+    "success": true,
+    "question": {'id': 13, 'question': 'What is the largest lake in Africa?', 'answer': 'Lake Victoria', 'category': 3, 'difficulty': 2}
+}
 ```
 ## Testing
 To run the tests, run

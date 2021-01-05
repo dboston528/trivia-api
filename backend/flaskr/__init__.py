@@ -148,7 +148,6 @@ def create_app(test_config=None):
       questions_paginated = paginate(request, question_search_list)
       category_list = Category.query.all()
       category_types = [category.type for category in category_list]
-      print(category_types)
       return jsonify({
         'success':True,
         'questions': questions_paginated,
