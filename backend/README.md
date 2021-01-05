@@ -104,8 +104,8 @@ DELETE '/questions/<question_id>'
 | DELETE | /questions/<questions_id> | Removes question from the database based on the ID | Question ID |
 | POST | /questions | Allows you to add a new questions to your database | none |
 | POST | /questions/search | Gets a questions based on a search term and returns any question for whom the search term us a substring | none | 
-| GET | /categories/<int:category_id>/questions | Gets questions based on category | Category ID |
-| POST | Gets questions to play the quz. Play all quiz questions or play specific categories | None | 
+| GET | /categories/<<int:category_id>>/questions | Gets questions based on category | Category ID |
+| POST | /quizzes | Gets questions to play the quz. Play all quiz questions or play specific categories | None | 
 
 ## Testing
 To run the tests, run
