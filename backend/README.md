@@ -97,8 +97,8 @@ DELETE '/questions/<question_id>'
 ```
 
 ## Endpoints
-| ------ | -------- | ----------  | ----------------  |
 | Method | Endpoint | Description | Request Arguments |
+| ------ | -------  | ----------  | ----------------- |
 | GET    | /categories | Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category | None |
 
 ## Testing
