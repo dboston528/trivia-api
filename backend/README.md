@@ -101,6 +101,7 @@ DELETE '/questions/<question_id>'
 | ------ | -------  | ----------  | ----------------- |
 | GET    | /categories | Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category | None |
 | GET | /questions | Fetches a list of all available questions and uses pagination to display only 10 questions at a time. | None |
+| DELETE | /questions/<questions_id> | Removes question from the database based on the ID | Question ID |
 
 ## Testing
 To run the tests, run
