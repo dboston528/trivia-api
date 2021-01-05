@@ -69,7 +69,6 @@ def create_app(test_config=None):
     formatted_questions = [question.format() for question in question_list]
     formatted_categories = {category.id: category.type for category in category_list}
     questions_paginated = paginate(request, question_list)
-
     if not len(questions_paginated):
      abort(404) 
 
@@ -149,6 +148,7 @@ def create_app(test_config=None):
       questions_paginated = paginate(request, question_search_list)
       category_list = Category.query.all()
       category_types = [category.type for category in category_list]
+      print(category_types)
       return jsonify({
         'success':True,
         'questions': questions_paginated,

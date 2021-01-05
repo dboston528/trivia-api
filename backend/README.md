@@ -117,6 +117,33 @@ GET /categories
 '5' : "Entertainment",
 '6' : "Sports"}
 ```
+GET /questions
+```
+{"categories":{"1":"Science","2":"Art","3":"Geography","4":"History","5":"Entertainment","6":"Sports"},"questions":[{"answer":"Maya Angelou","category":4,"difficulty":2,"id":5,"question":"Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"},{"answer":"Apollo 13","category":5,"difficulty":4,"id":2,"question":"What movie earned Tom Hanks his third straight Oscar nomination, in 1996?"},{"answer":"Tom Cruise","category":5,"difficulty":4,"id":4,"question":"What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?"},{"answer":"Edward Scissorhands","category":5,"difficulty":3,"id":6,"question":"What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?"},{"answer":"Brazil","category":6,"difficulty":3,"id":10,"question":"Which is the only team to play in every soccer World Cup tournament?"},{"answer":"Uruguay","category":6,"difficulty":4,"id":11,"question":"Which country won the first ever soccer World Cup in 1930?"},{"answer":"George Washington Carver","category":4,"difficulty":2,"id":12,"question":"Who invented Peanut Butter?"},{"answer":"Lake Victoria","category":3,"difficulty":2,"id":13,"question":"What is the largest lake in Africa?"},{"answer":"The Palace of Versailles","category":3,"difficulty":3,"id":14,"question":"In which royal palace would you find the Hall of Mirrors?"},{"answer":"Agra","category":3,"difficulty":2,"id":15,"question":"The Taj Mahal is located in which Indian city?"}],"success":true,"total_questions":19}
+```
+DELETE /questions/<questions_id>
+```
+{"success": true}
+```
+POST /questions
+```
+{"success": true}
+```
+POST /questions/search
+```
+{
+    "success": true,
+    "questions": [{'id': 2, 'question': 'What movie earned Tom Hanks his third straight Oscar nomination, in 1996?', 'answer': 'Apollo 13', 'category': 5, 'difficulty': 4}],
+    "total_questions": 1,
+    "categories": ['Science', 'Art', 'Geography', 'History', 'Entertainment', 'Sports']
+}
+```
+GET /categories/<<int:category_id>>/questions
+```
+```
+POST /quizzes
+```
+```
 ## Testing
 To run the tests, run
 ```
