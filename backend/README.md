@@ -107,6 +107,16 @@ DELETE '/questions/<question_id>'
 | GET | /categories/<<int:category_id>>/questions | Gets questions based on category | Category ID |
 | POST | /quizzes | Gets questions to play the quz. Play all quiz questions or play specific categories | None | 
 
+## Response Examples
+GET /categories
+```
+{'1' : "Science",
+'2' : "Art",
+'3' : "Geography",
+'4' : "History",
+'5' : "Entertainment",
+'6' : "Sports"}
+```
 ## Testing
 To run the tests, run
 ```
