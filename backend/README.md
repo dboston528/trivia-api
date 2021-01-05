@@ -87,8 +87,19 @@ GET '/categories'
 '5' : "Entertainment",
 '6' : "Sports"}
 
+GET '/questions'
+- Fetches a list of all available questions and uses pagination to display only 10 questions at a time.
+- Request Arguments: None
+- Returns: A list of questions, number of total questions, and categories
+
+DELETE '/questions/<question_id>'
+
 ```
 
+## Endpoints
+| ------ | -------- | ----------  | ----------------  |
+| Method | Endpoint | Description | Request Arguments |
+| GET    | /categories | Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category | None |
 
 ## Testing
 To run the tests, run
