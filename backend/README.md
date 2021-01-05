@@ -102,6 +102,10 @@ DELETE '/questions/<question_id>'
 | GET    | /categories | Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category | None |
 | GET | /questions | Fetches a list of all available questions and uses pagination to display only 10 questions at a time. | None |
 | DELETE | /questions/<questions_id> | Removes question from the database based on the ID | Question ID |
+| POST | /questions | Allows you to add a new questions to your database | none |
+| POST | /questions/search | Gets a questions based on a search term and returns any question for whom the search term us a substring | none | 
+| GET | /categories/<int:category_id>/questions | Gets questions based on category | Category ID |
+| POST | Gets questions to play the quz. Play all quiz questions or play specific categories | None | 
 
 ## Testing
 To run the tests, run
