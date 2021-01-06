@@ -46,7 +46,7 @@ def create_app(test_config=None):
     thecategories = Category.query.all()
     categoryTypes = {category.id: category.type for category in thecategories}
     return jsonify({
-      'success:': True,
+      'success': True,
       'categories': categoryTypes
     })
 
