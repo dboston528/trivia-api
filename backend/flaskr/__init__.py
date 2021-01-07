@@ -228,6 +228,7 @@ def create_app(test_config=None):
   @app.errorhandler(404)
   def resource_not_found(error):
     return jsonify({
+      "success": False,
       "error": 404,
       "message": "The resource you requested was not found."
     }, 404)
@@ -246,6 +247,12 @@ def create_app(test_config=None):
       "message": "You made a bad request."
     }, 400)
   
+  @app.errorhandler(405)
+  def bad_request(error):
+    return jsonify({
+      "error": 405,
+      "message": "This method is not allowed, sorry."
+    }, 405)
   
   
   return app
