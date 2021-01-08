@@ -147,7 +147,7 @@ def create_app(test_config=None):
       formatted_search = [question.format() for question in question_search_list]
       questions_paginated = paginate(request, question_search_list)
       category_list = Category.query.all()
-      category_types = [category.type for category in category_list]
+      category_types = {category.id: category.type for category in category_list}
       return jsonify({
         'success':True,
         'questions': questions_paginated,
@@ -169,9 +169,11 @@ def create_app(test_config=None):
   def get_question_by_category(category_id):
     try:
       question_search_list = Question.query.filter(Question.category == category_id).all()
+      if not question_search_list:
+        abort(404)
       formatted_search = [question.format() for question in question_search_list]
       category_list = Category.query.all()
-      category_types = [category.type for category in category_list]
+      category_types = {category.id: category.type for category in category_list}
       questions_paginated = paginate(request, question_search_list)
       return jsonify({
         'success':True,
@@ -180,7 +182,7 @@ def create_app(test_config=None):
         'categories': category_types
       })
     except:
-      abort(404)
+      abort(500)
 
 
   '''
@@ -236,6 +238,7 @@ def create_app(test_config=None):
   @app.errorhandler(422)
   def unprocessable(error):
     return jsonify({
+      "success": False,
       "error": 422,
       "message": "The request you made was not processable."
     }, 422)
@@ -248,7 +251,7 @@ def create_app(test_config=None):
     }, 400)
   
   @app.errorhandler(405)
-  def bad_request(error):
+  def method_not_request(error):
     return jsonify({
       "error": 405,
       "message": "This method is not allowed, sorry."
