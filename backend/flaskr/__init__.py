@@ -225,7 +225,7 @@ def create_app(test_config=None):
     return jsonify({
       "error": 500,
       "message": "There's a problem with the server."
-    }, 500)
+    }), 500
   
   @app.errorhandler(404)
   def resource_not_found(error):
@@ -233,7 +233,7 @@ def create_app(test_config=None):
       "success": False,
       "error": 404,
       "message": "The resource you requested was not found."
-    }, 404)
+    }), 404
   
   @app.errorhandler(422)
   def unprocessable(error):
@@ -241,21 +241,21 @@ def create_app(test_config=None):
       "success": False,
       "error": 422,
       "message": "The request you made was not processable."
-    }, 422)
+    }), 422
   
   @app.errorhandler(400)
   def bad_request(error):
     return jsonify({
       "error": 400,
       "message": "You made a bad request."
-    }, 400)
+    }), 400
   
   @app.errorhandler(405)
   def method_not_request(error):
     return jsonify({
       "error": 405,
       "message": "This method is not allowed, sorry."
-    }, 405)
+    }), 405
   
   
   return app
