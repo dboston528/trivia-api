@@ -122,7 +122,7 @@ def create_app(test_config=None):
       )
       new_question.insert()
       return jsonify({
-        'success': True
+        "success": True
       })
     except:
       abort(405)
@@ -179,7 +179,8 @@ def create_app(test_config=None):
         'success':True,
         'questions': questions_paginated,
         'total_questions': len(formatted_search),
-        'categories': category_types
+        'categories': category_types,
+        "current_category": category_id
       })
     except:
       abort(500)
@@ -253,6 +254,7 @@ def create_app(test_config=None):
   @app.errorhandler(405)
   def method_not_request(error):
     return jsonify({
+      "success": False,
       "error": 405,
       "message": "This method is not allowed, sorry."
     }), 405

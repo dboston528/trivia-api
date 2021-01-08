@@ -123,7 +123,7 @@ class TriviaTestCase(unittest.TestCase):
     
     # test Get questions by category
     def test_questions_with_category_id(self):
-        res = self.client().get("questions?category=2")
+        res = self.client().get("/categories/<int:category_id>/questions")
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
