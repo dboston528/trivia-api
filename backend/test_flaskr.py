@@ -139,13 +139,13 @@ class TriviaTestCase(unittest.TestCase):
         res = self.client().post(
             "/quizzes",
             json={
-                "previous_questions": ["1"],
+                "previous_questions": [1],
                 "quiz_category": {"type": "History", "id": 1},
             },
         )
         data = json.loads(res.data)
 
-        quiz = Question.query.filter_by(category="1").all()
+        quiz = Question.query.filter_by(category=1).all()
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data["success"], True)
@@ -156,12 +156,12 @@ class TriviaTestCase(unittest.TestCase):
         res = self.client().post(
             "/quizzes",
             json={
-                "previous_questions": ["100"],
+                "previous_questions": [100],
                 "quiz_category": {"type": "History", "id": 100},
             },
         )
 
-        quiz = Question.query.filter_by(category="100").all()
+        quiz = Question.query.filter_by(category=100).all()
 
         data = json.loads(res.data)
 
