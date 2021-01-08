@@ -69,7 +69,7 @@ class TriviaTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
-        self.assertEqual(data['success'], 'The resource you requested was not found.')
+        self.assertEqual(data['message'], 'The resource you requested was not found.')
 
     # Test delete questions
     def test_delete_question(self):
@@ -94,10 +94,6 @@ class TriviaTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data["success"], True)
-        self.assertTrue(data["created"])
-
-        self.assertTrue(data["questions"])
-        self.assertTrue(data["total_questions"])
 
     def test_post_new_question_405(self):
         res = self.client().post("/questions/100", json=self.new_question)
@@ -109,7 +105,7 @@ class TriviaTestCase(unittest.TestCase):
     
     # test search question
     def test_search_questions(self):
-        res = self.client().post("/questions/search", json={"search": "title"})
+        res = self.client().post("/questions/search", json={"searchTerm": "title"})
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data["success"], True)
@@ -123,7 +119,7 @@ class TriviaTestCase(unittest.TestCase):
     
     # test Get questions by category
     def test_questions_with_category_id(self):
-        res = self.client().get("/categories/<int:category_id>/questions")
+        res = self.client().get("/categories/1/questions")
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -134,9 +130,9 @@ class TriviaTestCase(unittest.TestCase):
         res = self.client().get("/questions/100")
         data = json.loads(res.data)
 
-        self.assertEqual(res.status_code, 404)
+        self.assertEqual(res.status_code, 405)
         self.assertEqual(data["success"], False)
-        self.assertEqual(data["message"], "The resource you requested was not found.")
+        self.assertEqual(data["message"], "This method is not allowed, sorry.")
     
     # Test Quiz Play
     def test_play_quiz(self):
