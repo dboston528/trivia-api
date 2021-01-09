@@ -208,7 +208,11 @@ def create_app(test_config=None):
       else:
         questions = Question.query.filter(Question.category == quiz_category['id']).filter(Question.id.notin_(previous_questions)).all()
         formatted_search = [question.format() for question in questions]
-      random_question = random.choice(formatted_search) if questions else None
+        if questions:
+          random_question = random.choice(formatted_search) 
+        else:
+          abort(422)
+      # random_question = random.choice(formatted_search) if questions else None
       return jsonify({
         'success': True,
         'question': random_question
