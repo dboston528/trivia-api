@@ -20,7 +20,7 @@ class TriviaTestCase(unittest.TestCase):
         self.new_question = {
             "question": "Is this is another questions?",
             "answer": "Yes",
-            "category": "Science",
+            "category": 1,
             "difficulty": 2,
         }
 
